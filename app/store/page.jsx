@@ -1,20 +1,24 @@
-"use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ProdCard from "../components/ProdCard";
 
-export default function Store() {
-  const [products, setProducts] = useState();
+async function getData(){
+    const res = await fetch('https://fakestoreapi.com/products')
+    
+    if (!res.ok) {
+      throw new Error('Failed to fetch data')
+    }
 
-  useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
+    return res.json()
+}
+
+export default async function Store() {
+
+    const data = await getData()
 
   return (
     <div className="flex flex-wrap gap-5 justify-center">
-      {products?.map((e) => {
+      {data?.map((e) => {
         return (
           <div key={e.id}>
             {" "}

@@ -1,20 +1,22 @@
-"use client"
 
-import React, { useEffect, useState } from "react";
 
-export default function Page({ params }) {
 
-  const [products, setProducts] = useState();
+async function getData( params ){
+  const res = await fetch(`https://fakestoreapi.com/products/${params}`)
+  
+  if (!res.ok) {
+    throw new Error('Failed to fetch data')
+  }
 
-  useEffect(() => {
-    fetch(`https://fakestoreapi.com/products/${params.product}`)
-      .then((res) => res.json())
-      .then((json) => setProducts(json));
-  }, []);
+  return res.json()
+}
 
+export default async function Store({ params }) {
+
+  const data = await getData(params.product)
 
   return <div> 
-     {products?.title}
+     {data?.title}
   </div>;
 
 }
