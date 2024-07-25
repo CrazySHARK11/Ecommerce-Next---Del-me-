@@ -16,9 +16,10 @@ export default function Store() {
     <div className="flex flex-wrap gap-5 justify-center">
       {products?.map((e) => {
         return (
-          <div>
+          <div key={e.id}>
             {" "}
             <ProdCard
+            
               id={e.id}
               title={e.title}
               price={e.price}
