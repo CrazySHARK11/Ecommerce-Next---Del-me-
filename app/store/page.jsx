@@ -19,7 +19,6 @@ export default function Store() {
           <div>
             {" "}
             <ProdCard
-              key={e.id}
               id={e.id}
               title={e.title}
               price={e.price}
