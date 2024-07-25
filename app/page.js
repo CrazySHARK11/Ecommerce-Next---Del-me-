@@ -1,7 +1,9 @@
-export default function page() {
+import Store from "./store/page";
+
+export default function Page() {
   return (
     <>
-      Helo
+      <Store />
     </>
   );
 }
